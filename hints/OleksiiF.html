@@ -1,12 +1,12 @@
-<body data-author="YOUR_CHECKIO_USERNAME">
+<body data-author="OleksiiF">
 <div class="question-answer">
     <div class="question">
-        I have no idea how to start solving this mission
+        I have no idea how to start solving this mission.
     </div>
     <div class="answer">
-        <p>datetime module is used to work with datetime</p>
+        <p>datetime module is used to work with datetime objects.</p>
 
-        <p>So your goal is to convert str parameters into a datetime objects, and then, compare two dates, find the biggest one, convert it into str</p>
+        <p>So your goal is to convert string arguments into a datetime objects, and then, compare two dates, find the biggest one, convert it into string.</p>
     </div>
 </div>
 <div class="question-answer">
@@ -22,7 +22,7 @@
         Can you please point me out?
     </div>
     <div class="answer">
-        <a target="_blank" href="https://docs.python.org/3/library/datetime.html#datetime.datetime.fromisoformat">fromisoformat</a> is the function to convert valid  ISO 8601 to datetime object, and <a target="_blank" href=https://docs.python.org/3/library/datetime.html#datetime.datetime.isoformat">isoformat</a> to convert datetime object to string.
+        <a target="_blank" href="https://docs.python.org/3/library/datetime.html#datetime.datetime.fromisoformat">fromisoformat</a> is the function to convert valid  ISO 8601 string to datetime object, and <a target="_blank" href=https://docs.python.org/3/library/datetime.html#datetime.datetime.isoformat">isoformat</a> to convert datetime object to string.
     </div>
 </div>
 <div class="question-answer">
@@ -31,7 +31,10 @@
     </div>
     <div class="answer">
         <pre class="brush: python">
-datetime_obj = datetime.datetime.fromisoformat('2007-03-04T21:08:12')
+from datetime import datetime
+
+
+datetime_obj = datetime.fromisoformat('2007-03-04T21:08:12')
 datetime_iso = datetime_obj.isoformat()
         </pre>
     </div>
@@ -41,14 +44,17 @@ datetime_iso = datetime_obj.isoformat()
         One last question. How my final solution will look like?
     </div>
     <div class="answer">
+        <p>Write something here...you need add function definition, combine all previous hints, return <b class="code">result</b> variable etc.</p>
         <pre class="brush: python">
-import datetime
+from datetime import datetime
+
 
 def get_latest(datetime_a: str, datetime_b: str) -> str:
-    datetime_b_obj = datetime.datetime.fromisoformat(datetime_a)
-    time_b_str_obj = datetime.datetime.fromisoformat(datetime_b)
 
-    latest = datetime_b_obj if datetime_b_obj > time_b_str_obj else time_b_str_obj
+    datetime_a_obj = datetime.fromisoformat(datetime_a)
+    datetime_b_obj = datetime.fromisoformat(datetime_b)
+
+    latest = datetime_b_obj if datetime_b_obj > datetime_a_obj else datetime_a_obj
     result = latest.isoformat()
 
     return result
