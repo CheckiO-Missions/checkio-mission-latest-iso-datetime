@@ -1,0 +1,63 @@
+<body data-author="fomenko.oleksii">
+<div class="question-answer">
+    <div class="question">
+        Я не розумію, як розв'язати цю місію
+    </div>
+    <div class="answer">
+        <p>Для роботи з datetime використовується модуль datetime</p>
+
+        <p>Отже, твоя мета — перетворити параметри (типу str) в об’єкти datetime</p>
+        <pre class="brush: python">
+import datetime
+
+
+datetime_a_obj = datetime.datetime.fromisoformat(datetime_a)
+datetime_b_obj = datetime.datetime.fromisoformat(datetime_b)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Що далі?
+    </div>
+    <div class="answer">
+        <p>Порівняй дві дати</p>
+        <pre class="brush: python">
+latest = datetime_b_obj if datetime_b_obj > datetime_a_obj else datetime_a
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Що робити після порівняння?
+    </div>
+    <div class="answer">
+        <p>Перетвори найбільшу дату на результат типу str та поверни її</p>
+        <pre class="brush: python">
+result = latest.isoformat()
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+Останнє запитання. Як виглядатиме моє остаточне рішення?
+    </div>
+    <div class="answer">
+        <pre class="brush: python">
+import datetime
+
+
+def get_latest(datetime_a: str, datetime_b: str) -> str:
+    datetime_a_obj = datetime.datetime.fromisoformat(datetime_a)
+    datetime_b_obj = datetime.datetime.fromisoformat(datetime_b)
+
+    latest = datetime_b_obj if datetime_b_obj > datetime_a_obj else datetime_a_obj
+    result = latest.isoformat()
+
+    return result
+        </pre>
+    </div>
+</div>
+
+
+</body>
