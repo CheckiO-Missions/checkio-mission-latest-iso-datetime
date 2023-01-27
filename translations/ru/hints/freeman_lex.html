@@ -1,0 +1,130 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        <i>Я не понимаю как справиться с этой задачей.</i> 
+    </div>
+    <div class="answer">
+        <p>
+            Последовательность действий такая: необходимо сконвертировать строку в объект <b class="code">datetime</b>, сравнить две даты и вернуть более позднюю, сконвертировав объект <b class="code">datetime</b> обратно в строку.
+        </p>
+    </div>
+</div>        
+<div class="question-answer">
+    <div class="question">
+        <i>
+            С чего мне начать?
+        </i>
+    </div>
+    <div class="answer">
+        <p>
+            Изучите встроенный модуль <a target="_blank" href="https://docs.python.org/3/library/datetime.html">datetime</a> и попробуйте найти нужные функции и методы.
+        </p>
+        <pre class="brush: python">
+import datetime
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>
+            Я не смог ничего найти. Дайте еще одну подсказку?
+        </i>
+    </div>
+    <div class="answer">
+        <p>
+            Конечно! Для начала, вам нужен метод <a target="_blank" href="https://docs.python.org/3/library/datetime.html#datetime.datetime.fromisoformat">datetime.fromisoformat()</a> что бы сконвертировать строку соответствующую формату ISO 8601 в объект<b class="code">datetime</b> .
+        </p>
+        <pre class="brush: python">
+import datetime
+
+
+dt1obj = datetime.datetime.fromisoformat(dt1str)
+dt2obj = datetime.datetime.fromisoformat(dt2str)
+        </pre>
+        <p>
+            Что бы код был более изящным, импортируйте из модуля только объект <b class="code">datetime</b>, поскольку в этой задаче потребуется только он.
+        </p>
+        <pre class="brush: python">
+from datetime import datetime
+
+
+dt1obj = datetime.fromisoformat(dt1str)
+dt2obj = datetime.fromisoformat(dt2str)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>Что делать дальше?</i>
+    </div>
+    <div class="answer">
+        <p>Просто сравните две даты и верните более позднюю.</p>
+        <pre class="brush: python">
+latest = dt2obj if dt2obj > dt1obj else dt1obj
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>Готово! Как мне переконвертировать данные обратно в строку?</i>
+    </div>
+    <div class="answer">
+        <p>Для этого потребуется другой объект модуля <b class="code">datetime</b>, а именно - метод <a target="_blank" href="https://docs.python.org/3/library/datetime.html#datetime.datetime.isoformat">isoformat()</a>.</p>
+        <pre class="brush: python">
+result = latest.isoformat()
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>Отлично, как должна выглядеть моя программа?</i>
+    </div>
+    <div class="answer">
+        <p>
+            Вы должны поместить свой код в заданную функцию и, связав все предыдущие подсказки, получить итоговый результат.
+        </p>
+        <pre class="brush: python">
+from datetime import datetime
+
+
+def get_latest(dt1str: str, dt2str: str) -> str:
+
+    dt1obj = datetime.fromisoformat(dt1str)
+    dt2obj = datetime.fromisoformat(dt2str)
+
+    latest = dt2obj if dt2obj > dt1obj else dt1obj
+    result = latest.isoformat()
+
+    return result
+        </pre>
+        <p>
+            Так, теперь давайте попробуем оптимизировать это решение. Во-первых, вы можете использовать кортежи и встроенную функцию <a target="_blank" href="https://www.w3schools.com/python/ref_func_map.asp">map()</a> что бы получить объекты <b class="code">datetime</b>. 
+        </p>
+        <pre class="brush: python">
+dt1obj, dt2obj = map(datetime.fromisoformat, (dt1str, dt2str))
+        </pre>
+        <p>
+            Во-вторых, сделать сравнение, используя встроенную функцию <a target="_blank" href="https://www.w3schools.com/python/ref_func_max.asp">max()</a> и сразу перевести из даты в строку.  Давайте посмотрим на код еще раз:
+        </p>
+        <pre class="brush: python">
+from datetime import datetime
+
+
+def get_latest(dt1str: str, dt2str: str) -> str:
+
+    dt1obj, dt2obj = map(datetime.fromisoformat, (dt1str, dt2str))
+    result = max(dt2obj, dt1obj).isoformat()
+
+    return result
+        </pre>
+        <p>
+            Более того, <b>если вы абсолютно уверены, что все строки имеют одинаковый формат</b>, вы можете просто их сравнить "как есть" не преобразовывая в формат даты, поскольку Python, сопоставляя каждый символ попарно друг другу, сразу найдет более позднюю дату.
+        </p>
+        <pre class="brush: python">
+def get_latest(dt1str: str, dt2str: str) -> str:
+
+    return max(dt1str, dt2str)
+        </pre>
+    </div>
+</div>
+</body>
